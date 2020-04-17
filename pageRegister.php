@@ -44,8 +44,8 @@ $currentDateTime = date('Y-m-d');
                     Comment avez-vous entendu parler de moi ? :<br><input class="inputRegister" type="text" name="moyen_connaissance" required="required" autocomplete="off"> <br><br>
                 </tr>
             </table>
-            <input class="button" type="submit" value="Submit">
-            <input class="button" type="reset" name="Reset">
+            <input class="button" type="submit" value="Valider">
+            <input class="button" type="reset" name="Réinitailiser">
         </form>
     </div>
 

@@ -23,10 +23,10 @@ include "navbar.php";
         <form method="post" action="functionLogin.php">
             <table>
                 <tr>
-                    <th>Email: </th><td><input id="email" name="email" type="text" required="required" autocomplete="off"></td>
+                    <th>Adresse email : </th><td><input id="email" name="email" type="text" required="required" autocomplete="off"></td>
                 </tr>
                 <tr>
-                    <th>Password: </th><td><input id="password" name="password" type="password" required="required" autocomplete="off"></td>
+                    <th>Mot de passe : </th><td><input id="password" name="password" type="password" required="required" autocomplete="off"></td>
                 </tr>
                 <tr>
                     <th colspan="2"><br/>
