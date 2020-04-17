@@ -29,7 +29,7 @@ $currentDateTime = date('Y-m-d');
                     Nom :<br><input class="inputRegister" type="text" name="nom" required="required" autocomplete="off"> <br><br>
                 </tr>
                 <tr>
-                    Prénom :<br><input class="inputRegister" type="text" name="prénom" required="required" autocomplete="off"> <br><br>
+                    Prénom :<br><input class="inputRegister" type="text" name="prenom" required="required" autocomplete="off"> <br><br>
                 </tr>
                 <tr>
                     Catégorie Sociale :<br><input class="inputRegister" type="text" name="categorie_sociale" required="required" autocomplete="off"> <br><br>

@@ -2,34 +2,34 @@
 
 include("conn.php");
 
-$username = $_POST['username'];
-$password = $_POST['password'];
-$email = $_POST['emailAddress'];
-$phone = $_POST['phoneNumber'];
-$mailing = $_POST['mailingAddress'];
-$dateOfBirth = $_POST['dateOfBirth'];
+$nom = $_POST['nom'];
+$prenom = $_POST['prenom'];
+$categorie_sociale = $_POST['categorie_sociale'];
+$email = $_POST['adresse_email'];
+$mot_de_passe = $_POST['mot_de_passe'];
+$moyen_connaissance = $_POST['moyen_connaissance'];
 $role = 0;
 
-$sql1 = new mysqli("localhost", "root", "", "webprojects5");
-$result = $sql1->query("SELECT * FROM customer WHERE custEmail = '".$email."'");
+$sql1 = new mysqli("localhost", "root", "", "bdd_project");
+$result = $sql1->query("SELECT * FROM patient WHERE Email = '".$email."'");
 if($result->num_rows > 0)
 {
-    echo '<script>alert("This email is already used");';
+    echo '<script>alert("Cette adresse email est déjà utilisée");';
     echo "window.location.href='pageRegister.php';</script>";
     mysqli_close($conn);
 }
 else
 {
-    $sql = "INSERT INTO customer(custUsername, custPassword, custEmail, custPhone, custMailing, custDateOfBirth, role)
-            VALUES
-            ('$username', '" . md5($password) . "', '$email', '$phone', '$mailing', '$dateOfBirth', '$role')";
+    $sql = "INSERT INTO patient(Nom, Prenom, Categorie_sociale, Email, Mot_de_passe, Moyen_connaissance, role)
+            VALUE
+            ('$nom', '$prenom ', '$categorie_sociale', '$email', '" . md5($mot_de_passe) . "', '$moyen_connaissance', '$role')";
 
 
     if (!mysqli_query($conn, $sql)) {
-        die("Error : " . mysqli_error($conn));
+        die("Erreur : " . mysqli_error($conn));
     }
 
-    echo '<script>alert("1 customer added!");';
+    echo '<script>alert("1 client ajouté!");';
     echo "window.location.href='pageLogin.php';</script>";
     mysqli_close($conn);
 }
