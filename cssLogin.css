@@ -1,0 +1,103 @@
+html
+{
+    height: 100%;
+}
+
+
+body {
+    background-image: url(Image/DéBackground.jpg);
+
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+
+    background-color: #333;
+}
+
+header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+header li {
+    float: left;
+    height: 100%;
+}
+
+header li a {
+    height: 40px;
+    display: block;
+    color: white;
+    padding: 20px 20px;
+    text-decoration: none;
+
+    text-align: center;
+    font-size: 30px;
+}
+
+header li a:hover {
+    background-color: #111;
+}
+
+
+
+
+
+#loginDiv
+{
+    color: whitesmoke;
+    border-style: inset;
+    border-radius: 25px;
+
+    padding: 5px 50px 20px 50px;
+
+    max-width: 250px;
+
+    margin-left: 200px;
+    margin-top: 380px;
+    align-content: center;
+
+    text-align: center;
+}
+
+h1{
+    font-size: 37px;
+}
+
+#email, #password{
+    border-radius: 8px;
+    font-family: Georgia, "Gill Sans MT Ext Condensed Bold", Times, serif;
+    font-size: 15px;
+    padding-left: 4px;
+}
+
+
+.button {
+    box-shadow: 3px 4px 0px 0px lightslategray;
+    background:linear-gradient(to bottom, whitesmoke 5%, darkgrey 100%);
+    background-color:#ededed;
+    border-radius:15px;
+    border:1px solid #d6bcd6;
+    display:inline-block;
+    color:black;
+    font-size:15px;
+    padding:5px 15px;
+    text-shadow:0px 1px 0px #e1e2ed;
+}
+.button:hover {
+    background:linear-gradient(to bottom, darkgrey 5%, whitesmoke 100%);
+    background-color: lightgray;
+}
+
+
