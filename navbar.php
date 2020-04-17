@@ -3,21 +3,16 @@
     function navbar()
     {
         echo "<ul>";
-        echo "<li><a href='pageHome.php'>Home</a></li>";
-        echo "<li><a href='gameFamily.php'>Family Games</a></li>";
-        echo "<li><a href='gameCard.php'>Card Game</a></li>";
-        echo "<li><a href='gameRolePlay.php'>Role Play Games</a></li>";
-        echo "<li><a href='gameStrategy.php'>Strategy</a></li>";
-
+        echo "<li><a href='pageHome.php'>Accueil</a></li>";
 
         if(! isset($_SESSION['username']))
         {
             echo "<li><a href='pageLogin.php'>Login</a></li>";
-            echo "<li><a href='pageRegister.php'>Register</a></li>";
+            echo "<li><a href='pageRegister.php'>S'enregistrer</a></li>";
         }
         else if($_SESSION['role'] === "0")
         {
-            echo "<li><a href='pageSeeProfile.php'>Profile</a></li>";
+            echo "<li><a href='pageSeeProfile.php'>Profil</a></li>";
             echo "<li><a href='functionLogout.php'>Logout</a></li>";
         }
         else
