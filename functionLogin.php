@@ -6,15 +6,15 @@ include "conn.php";
 $email = mysqli_real_escape_string($conn, $_POST['email']);
 $password = mysqli_real_escape_string($conn, $_POST['mot_de_passe']);
 
-$sql = "Select * from patient where Email = '".$email."'
+$sql = "SELECT * FROM patient WHERE Email = '".$email."'
 and Mot_de_passe = '".md5($password)."'";
 
 $result = mysqli_query($conn, $sql);
 
 if(mysqli_num_rows($result)<=0)
 {
-    $sql = "Select * from patient where Email = '".$email."'
-and Mot_de_passe = '".md5($password)."'";
+    $sql = "SELECT * FROM patient WHERE Email = '".$email."' 
+    and Mot_de_passe = '".md5($password)."'";
 
     $result = mysqli_query($conn, $sql);
     if(mysqli_num_rows($result)<=0)

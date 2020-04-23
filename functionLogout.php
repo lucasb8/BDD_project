@@ -2,7 +2,7 @@
 
 session_start();
 
-echo "<script>alert('You already logged out! Thank you ".
+echo "<script>alert('Vous êtes bien déconnecté!".
     $_SESSION['username'] ." !')</script>";
 
 session_destroy();
