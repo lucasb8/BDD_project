@@ -5,7 +5,7 @@
         echo "<ul>";
         echo "<li><a href='pageHome.php'>Accueil</a></li>";
 
-        if(! isset($_SESSION['username']))
+        if(! isset($_SESSION['id']))
         {
             echo "<li><a href='pageLogin.php'>Login</a></li>";
             echo "<li><a href='pageRegister.php'>S'enregistrer</a></li>";
