@@ -35,6 +35,7 @@ if($row=mysqli_fetch_array($result))
 if($_SESSION['role'] === "0")
 {
     echo "<script>alert('Bon retour parmis nous, ".$_SESSION['nom']."');";
+    echo "<script>alert('Bon retour parmis nous, ".$_SESSION['nom']."');";
     echo "window.location.href='pageHome.php';</script>";
 }
 else if($_SESSION['role'] === "1")

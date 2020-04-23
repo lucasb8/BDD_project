@@ -70,7 +70,7 @@ if(! isset($_SESSION['nom']))
 
         echo "<br/><br/>";
         echo "<a>" . "Date : " . $rows['Date'] . "</a><br/><br/>";
-        echo "<a>" . "Heure : " . $rows['Heure'] . "</a><br/><br/>";
+        echo "<a>" . "Heure : " . $rows['Heure'] ."h". $rows['Minute'] . "</a><br/><br/>";
     }
 
     ?>
