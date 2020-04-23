@@ -38,14 +38,15 @@ else if($_SESSION['role'] === "1")
 
 <div id="gameRent">
     <h3>Quand voulez-vous me rencontrer ?</h3>
-    <form  method="post">
+    <form  method="post" action="insertRDV.php" >
         <table>
             <tr>
                 <p>Date : </p><input type="date" name="date" min="<?php echo $currentDateTime;?>" required="required"> <br><br>
             </tr>
             <tr>
-                <p>Heure : </p>
+
                 <form method="post">
+                    <p>Heure : </p>
                     <select name="heure" id="heure">
                         <option value="10">10</option>
                         <option value="11">11</option>
@@ -56,19 +57,17 @@ else if($_SESSION['role'] === "1")
                         <option value="17">17</option>
                         <option value="18">18</option>
                     </select>
-                </form>
-                <br><br>
-            </tr>
-            <tr>
-                <p>Minute : </p>
-                <form method="post">
+                    <p>Minute : </p>
                     <select name="minute" id="minute">
-                        <option value="00">00</option>
+                        <option value="0">00</option>
                         <option value="15">15</option>
                         <option value="30">30</option>
                         <option value="45">45</option>
                     </select>
                 </form>
+                <br><br>
+            </tr>
+            <tr>
                 <br><br>
             </tr>
         </table>
