@@ -32,7 +32,14 @@ $currentDateTime = date('Y-m-d');
                     Prénom :<br><input class="inputRegister" type="text" name="prenom" required="required" autocomplete="off"> <br><br>
                 </tr>
                 <tr>
-                    Catégorie Sociale :<br><input class="inputRegister" type="text" name="categorie_sociale" required="required" autocomplete="off"> <br><br>
+					Classification :
+                    <br><select class="inputRegister" type="text" name="categorie_sociale" required="required">
+						<option value="Homme"> Homme (age > 18 ans) </option>
+						<option value="Femme"> Femme (age > 18 ans) </option>
+						<option value="Adolescent"> Adolescent (13ans < age < 17 ans) </option>
+						<option value="Enfant"> Enfant (age < 13 ans) </option>
+						<option value="Couple"> Couple </option>
+					</select> <br><br>
                 </tr>
                 <tr>
                     Adresse email :<br><input class="inputRegister" type="email" name="adresse_email" required="required" autocomplete="off"> <br><br>
@@ -42,6 +49,9 @@ $currentDateTime = date('Y-m-d');
                 </tr>
                 <tr>
                     Comment avez-vous entendu parler de moi ? :<br><input class="inputRegister" type="text" name="moyen_connaissance" required="required" autocomplete="off"> <br><br>
+                </tr>
+				<tr>
+                    Quel est votre profession actuelle (Facultatif):<br><input class="inputRegister" type="text" name="profession" autocomplete="off"> <br><br>
                 </tr>
             </table>
             <input class="button" type="submit" value="Valider">
