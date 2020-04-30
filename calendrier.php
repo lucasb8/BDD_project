@@ -60,7 +60,6 @@ $apres = $ts + 604800; //TimeStamp Lundi suivant
 <body>
 	</br>
 	<h1 align="center"><?php echo $tabMois[date('m', $ts)].date('Y', $ts) ?> </h1>
-
 	<table>
 		<tr>
 			<?php 
@@ -113,7 +112,6 @@ $apres = $ts + 604800; //TimeStamp Lundi suivant
 					if ($matrice[$i][$j] == '0')
 					{ ?>
 						<td class = "withBorder" align="center" onMouseUp="pasRDV(event)">
-
 						</td> 
 					
 					<?php 
@@ -121,7 +119,21 @@ $apres = $ts + 604800; //TimeStamp Lundi suivant
 					else{
 					?>
 						<td class = "noBorder" align="center" onMouseUp="actionDate('<?php echo date('Y-m-d', $jour);?>', event)">
-							<?php echo $matrice[$i][$j]; ?>
+							<?php  //requete pour récuperer l'heure
+							$index = $matrice[$i][$j]; 
+							$sql = new mysqli("localhost", "root", "", "bdd_project");
+							$result1 = $sql->query("SELECT * FROM rendez_vous WHERE ID_rendez_vous = '".$index."'");
+							$rows = mysqli_fetch_array($result1);
+							echo substr($rows["Heure"], 0, 5);
+							?>
+							</br>
+							<?php // requete pour récuperer le nom
+							$result2 = $sql->query("SELECT Nom, Prenom FROM patient WHERE ID_patient = 
+														(SELECT ID_patient FROM consultation WHERE ID_rendez_vous = '".$index."')");
+							$rows = mysqli_fetch_array($result2);
+							echo $rows["Prenom"];
+							echo $rows["Nom"];
+							?>
 						</td>
 					<?php 
 					} 
@@ -131,7 +143,7 @@ $apres = $ts + 604800; //TimeStamp Lundi suivant
 	</table>
 	
 	</br>
-	<div align="center">
+	<div class = "change" align="center">
 		<a href='./calendrier.php?lundi=<?php echo $avant;?>' class="link"> << </a>
 		<a> <?php echo "Semaine ".$week; ?> </a>
 		<a href='./calendrier.php?lundi=<?php echo $apres;?>' class="link"> >> </a>
