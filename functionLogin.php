@@ -5,6 +5,7 @@ include "conn.php";
 
 $email = mysqli_real_escape_string($conn, $_POST['email']);
 $password = mysqli_real_escape_string($conn, $_POST['mot_de_passe']);
+$enregistre = 1;
 
 $sql = "SELECT * FROM patient WHERE Email = '".$email."'
 and Mot_de_passe = '".md5($password)."'";
@@ -26,19 +27,28 @@ if(mysqli_num_rows($result)<=0)
 
 if($row=mysqli_fetch_array($result))
 {
-    $_SESSION['id'] = $row['ID_patient'];
-    $_SESSION['nom'] = $row['Nom'];
-    $_SESSION['mot_de_passe'] = $row['Mot_de_passe'];
-    $_SESSION['role'] = $row['role'];
+    if($row['enregistre'] == 1)
+    {
+        $_SESSION['id'] = $row['ID_patient'];
+        $_SESSION['nom'] = $row['Nom'];
+        $_SESSION['mot_de_passe'] = $row['Mot_de_passe'];
+        $_SESSION['role'] = $row['role'];
+
+        if($_SESSION['role'] === "0")
+        {
+            echo "<script>alert('Bon retour parmis nous, ".$_SESSION['nom']."');";
+            echo "window.location.href='pageHome.php';</script>";
+        }
+        else if($_SESSION['role'] === "1")
+        {
+            echo "<script>alert('Ouiiii ! Connexion de la psy ".$_SESSION['nom']."');";
+            echo "window.location.href='pageHome.php';</script>";
+        }
+    }
+    else
+    {
+        echo "<script>alert('Pas accepté par la psy ".$_SESSION['nom']."');";
+        echo "window.location.href='pageHome.php';</script>";
+    }
 }
 
-if($_SESSION['role'] === "0")
-{
-    echo "<script>alert('Bon retour parmis nous, ".$_SESSION['nom']."');";
-    echo "window.location.href='pageHome.php';</script>";
-}
-else if($_SESSION['role'] === "1")
-{
-    echo "<script>alert('Ouiiii ! Connexion de la psy ".$_SESSION['nom']."');";
-    echo "window.location.href='pageHome.php';</script>";
-}

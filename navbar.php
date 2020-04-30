@@ -18,7 +18,7 @@
         else
         {
             echo "<li><a href='pageViewData.php'>View Data</a></li>";
-            echo "<li><a href='managerAddItem.php'>Add new game</a></li>";
+            echo "<li><a href='nouveauPatient.php'>Ajouter un nouveau client</a></li>";
             echo "<li><a href='functionLogout.php'>Logout</a></li>";
         }
 
