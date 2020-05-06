@@ -3,20 +3,10 @@ session_start();
 
 include("conn.php");
 
-$nom = $_POST['nom'];
-$prenom = $_POST['prenom'];
-$categorie_sociale = $_POST['categorie_sociale'];
-$email = $_POST['adresse_email'];
-$mot_de_passe = $_POST['mot_de_passe'];
-$moyen_connaissance = $_POST['moyen_connaissance'];
-$role = 0;
-$enregistre = 0;
-
-$sql1 = new mysqli("localhost", "root", "", "bdd_project");
-$result = $sql1->query("SELECT * FROM patient WHERE Email = '".$email."'");
 if(isset($_SESSION['id']) && !empty($_SESSION['id']))
 {
     $enregistre = 1;
+    $uid = $_GET['ID'];
 
     $sql = "Update patient SET ".
         "enregistre = '$enregistre' Where ID_patient = '$uid'";
@@ -27,11 +17,11 @@ if(isset($_SESSION['id']) && !empty($_SESSION['id']))
     if(mysqli_affected_rows($conn)<=0)
     {
         die("<script>alert('Cannot update data!');
-            window.location.href='pageHome.php?id=$uid';</script>");
+        window.location.href='pageHome.php;</script>");
     }
 
-    echo "<script>alert('Le client a été ajouté !');</script>";
-    echo "<script>window.location.href='pageHome.php?id=$uid';</script>";
+    echo "<script> alert('Le client a été ajouté !'); </script>";
+    echo "<script> window.location.href='nouveauPatient.php'; </script>";
 }
 else
 {

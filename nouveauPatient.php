@@ -36,9 +36,14 @@ $currentDateTime = date('Y-m-d');
     {
         echo "<div class='patients'>";
 
-        echo "<div class='desc'>".$rows['Nom']."</div>";
+            echo "<div class='desc'>".$rows['Nom']."</div>";
 
-        echo "</div>";
+            echo "<div class='add_button'>";
+                 echo "<form action='insert.php?ID=".$rows['ID_patient']."' method='post'>";
+                    echo "<input type='submit' class='game_rent_choose' name='game_rent_choose' value='Accepter' onclick=''/>";
+                echo "</form>";
+            echo "</br>";
+            echo "</div>";
 
         echo "</div>";
     }
