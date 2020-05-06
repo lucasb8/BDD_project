@@ -1,6 +1,25 @@
 <?php
-include"conn.php";
+    session_start();
+    include "navbar.php";
+    include "conn.php";
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rent Page</title>
+    <link rel="stylesheet" href="cssRegister.css">
+</head>
+
+<body class="background">
+
+<header>
+    <div id="nav">
+        <?php
+            navbar();
+        ?>
+</header>
 
 <?php
 
