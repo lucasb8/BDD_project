@@ -36,7 +36,7 @@ else if($_SESSION['role'] === "1")
     $currentDateTime = date('Y-m-d');
 ?>
 
-<div id="gameRent">
+<div id="form">
     <h3>Quand voulez-vous me rencontrer ?</h3>
     <form  method="post" action="insertRDV.php" >
         <table>
@@ -50,7 +50,6 @@ else if($_SESSION['role'] === "1")
                     <select name="heure" id="heure">
                         <option value="10">10</option>
                         <option value="11">11</option>
-                        <option value="12">12</option>
                         <option value="14">14</option>
                         <option value="15">15</option>
                         <option value="16">16</option>
@@ -60,9 +59,7 @@ else if($_SESSION['role'] === "1")
                     <p>Minute : </p>
                     <select name="minute" id="minute">
                         <option value="0">00</option>
-                        <option value="15">15</option>
                         <option value="30">30</option>
-                        <option value="45">45</option>
                     </select>
                 </form>
                 <br><br>
