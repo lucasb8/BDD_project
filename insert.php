@@ -34,49 +34,51 @@ else
     $role = 0;
     $enregistre = 0;
 
-    $sql1 = new mysqli("localhost", "root", "", "bdd_project");
-    $result = $sql1->query("SELECT * FROM patient WHERE Email = '".$email."'");
+    $sql = new mysqli("localhost", "root", "", "bdd_project");
+    $result = $sql->query("SELECT * FROM patient WHERE Email = '".$email."'");
     if($result->num_rows > 0)
     {
-        echo '<script>alert("Cette adresse email est déjà utilisée");';
-        echo "<script>window.location.href='pageHome.php';</script>";
+        echo '<script>alert("Cette adresse email est déjà utilisée !");';
+        echo "window.location.href='pageLogin.php';</script>";
         mysqli_close($conn);
     }
     else
     {
-        $sql = "INSERT INTO patient(Nom, Prenom, Categorie_sociale, Email, Mot_de_passe, Moyen_connaissance, role, enregistre)
+        $sql1 = "INSERT INTO patient(Nom, Prenom, Categorie_sociale, Email, Mot_de_passe, Moyen_connaissance, role, enregistre)
             VALUE
             ('$nom', '$prenom ', '$categorie_sociale', '$email', '" . md5($mot_de_passe) . "', '$moyen_connaissance', '$role', '$enregistre')";
+
+        if (!mysqli_query($conn, $sql1))
+        {
+            die("Erreur : " . mysqli_error($conn));
+        }
+
+        if(!empty($_POST['profession'])){
+            $profession = $_POST['profession'];
+
+            $sql2 = "SELECT * FROM patient";
+            $result1 = mysqli_query($conn, $sql2);
+
+            while ($row = $result1->fetch_array())
+            {
+                if ($row["Email"] == $email)
+                {
+                    $id_patient = $row["ID_patient"];
+
+                    $sql2 = "INSERT INTO profession(Nom_profession, ID_patient) 
+						VALUE('$profession', '$id_patient')";
+                    if (!mysqli_query($conn, $sql2))
+                    {
+                        die("Erreur : " . mysqli_error($conn));
+                    }
+                }
+            }
+            $result->free();
+        }
+
+        echo '<script>alert("1 client ajouté!");';
+        echo "window.location.href='pageLogin.php';</script>";
+        mysqli_close($conn);
     }
-
-    if (!mysqli_query($conn, $sql))
-    {
-        die("Erreur : " . mysqli_error($conn));
-    }
-	
-	
-	if(!empty($_POST['profession'])){
-		$profession = $_POST['profession'];
-		
-		$sql1 = "SELECT * FROM patient";
-		$result = mysqli_query($conn, $sql1);
-
-		while ($row = $result->fetch_array()){
-			if ($row["Email"] == $email) {
-				$id_patient = $row["ID_patient"];
-				
-				$sql1 = "INSERT INTO profession(Nom_profession, ID_patient) 
-						VALUE('$profession', $id_patient)";
-				if (!mysqli_query($conn, $sql1)) {
-					die("Erreur : " . mysqli_error($conn));
-				}
-			}
-		}
-		$result->free();
-	}
-
-    echo '<script>alert("1 client ajouté!");';
-    echo "window.location.href='pageLogin.php';</script>";
-    mysqli_close($conn);
 }
 ?>
