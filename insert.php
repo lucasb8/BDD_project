@@ -53,8 +53,30 @@ else
     {
         die("Erreur : " . mysqli_error($conn));
     }
+	
+	
+	if(!empty($_POST['profession'])){
+		$profession = $_POST['profession'];
+		
+		$sql1 = "SELECT * FROM patient";
+		$result = mysqli_query($conn, $sql1);
+
+		while ($row = $result->fetch_array()){
+			if ($row["Email"] == $email) {
+				$id_patient = $row["ID_patient"];
+				
+				$sql1 = "INSERT INTO profession(Nom_profession, ID_patient) 
+						VALUE('$profession', $id_patient)";
+				if (!mysqli_query($conn, $sql1)) {
+					die("Erreur : " . mysqli_error($conn));
+				}
+			}
+		}
+		$result->free();
+	}
 
     echo '<script>alert("1 client ajouté!");';
     echo "window.location.href='pageLogin.php';</script>";
     mysqli_close($conn);
 }
+?>
