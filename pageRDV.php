@@ -11,7 +11,7 @@ if(! isset($_SESSION['nom']))
 else if($_SESSION['role'] === "1")
 {
     echo "<script>alert('Je suis la psy, je ne vais prendre un rendez-vous avec moi-même enfin !');</script>";
-    echo "<script>window.location.href='pageHome.php';</script>";
+    echo "<script>window.location.href='pageProfile.php';</script>";
 }
 ?>
 

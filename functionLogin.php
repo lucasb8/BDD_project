@@ -37,18 +37,18 @@ if($row=mysqli_fetch_array($result))
         if($_SESSION['role'] === "0")
         {
             echo "<script>alert('Bon retour parmis nous, ".$_SESSION['nom']."');";
-            echo "window.location.href='pageHome.php';</script>";
+            echo "window.location.href='pageSeeProfile.php';</script>";
         }
         else if($_SESSION['role'] === "1")
         {
             echo "<script>alert('Ouiiii ! Connexion de la psy ".$_SESSION['nom']."');";
-            echo "window.location.href='pageHome.php';</script>";
+            echo "window.location.href='pageSeeProfile.php';</script>";
         }
     }
     else
     {
         echo "<script>alert('Pas accepté par la psy ".$_SESSION['nom']."');";
-        echo "window.location.href='pageHome.php';</script>";
+        echo "window.location.href='pageLogin.php';</script>";
     }
 }
 

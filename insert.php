@@ -17,7 +17,7 @@ if(isset($_SESSION['id']) && !empty($_SESSION['id']))
     if(mysqli_affected_rows($conn)<=0)
     {
         die("<script>alert('Cannot update data!');
-        window.location.href='pageHome.php;</script>");
+        window.location.href='pageLogin.php;</script>");
     }
 
     echo "<script> alert('Le client a été ajouté !'); </script>";

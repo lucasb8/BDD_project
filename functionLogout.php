@@ -7,4 +7,4 @@ echo "<script>alert('Vous êtes bien déconnecté!".
 
 session_destroy();
 
-echo "<script>window.location.href='pageHome.php'</script>";
+echo "<script>window.location.href='pageLogin.php'</script>";
