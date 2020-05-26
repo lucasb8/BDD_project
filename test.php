@@ -1,51 +1,36 @@
 <?php
+    include "conn.php";
 
-session_start();
-include("conn.php");
+    $uid = $_GET['id'];
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom'];
+    $categorie = $_POST['categorie'];
+    $email = $_POST['email'];
+    $moyen = $_POST['moyen'];
 
-$date = $_POST['date'];
-$heure = isset($_POST['heure'] ) ? $_POST['heure'] : NULL;
-$minute = isset($_POST['minute'] ) ? $_POST['minute'] : NULL;
-$id_patient = $_SESSION['id'];
-$valide = 0;
+    $sql = "Update patient SET ".
+        "Nom = '$nom', ".
+        "Prenom = '$prenom', ".
+        "Categorie_sociale = '$categorie', ".
+        "Email = '$email', ".
+        "Moyen_connaissance = '$moyen' Where ID_patient = '$uid'";
 
-if($heure == NULL)
-{
-    die("La valeur de l'heure n'est pas set !");
-}
-else if($minute == NULL)
-{
-    die("La valeur des minutes n'est pas set !");
-}
+    mysqli_query($conn, $sql);
 
-$result = mysqli_query($conn, $sql);
-
-if($result->num_rows > 0)
-{
-    $result1 = $result->query("SELECT * FROM rendez_vous WHERE Heure = '".$heure."'");
-    if($result1->num_rows > 0)
+    echo mysqli_error($conn);
+    if(mysqli_affected_rows($conn) <= 0)
     {
-        $result2 = $result1->query("SELECT * FROM rendez_vous WHERE Minute = '".$minute."'");
-        if($result2->num_rows > 0)
-        {
-            echo '<script>alert("Horaire déjà pris !");';
-            echo "window.location.href='pageSeeProfile.php';</script>";
-            mysqli_close($conn);
-        }
-    }
-}
-else            // Demander le rdv
-{
-    $sql = "INSERT INTO rendez_vous(Date, Heure, Minute, ID_patient, Valide)
-            VALUE
-            ('$date', '$heure ', '$minute', '$id_patient', '$valide')";
-
-
-    if (!mysqli_query($conn, $sql)) {
-        die("Erreur : " . mysqli_error($conn));
+        die("<script>alert('Impossible de modifier !');
+        window.location.href='pageSeeProfile.php';</script>");
     }
 
-    echo '<script>alert("1 rendez-vous ajouté!");';
-    echo "window.location.href='pageSeeProfile.php';</script>";
-    mysqli_close($conn);
-}
+
+    echo "<script>alert('Données modifiées !');</script>";
+    if ($_SESSION['role'] == 0)
+    {
+        echo "<script>window.location.href='pageSeeProfile.php';</script>";
+    }
+    else
+    {
+        echo "<script>window.location.href='pageViewData.php';</script>";
+    }

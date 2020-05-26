@@ -44,17 +44,6 @@
 
             <tr>
                 <td> <input class="button" type="submit" value="Modifier"> </td>
-                <?php
-                    if($_SESSION['role'] == 0)
-                    {
-                        echo "<td> <input class=\"button\" type=\"submit\" value=\"Retour\" formaction=\"pageSeeProfile.php\"> </td>";
-                    }
-                    else
-                    {
-                        echo "<td> <input class=\"button\" type=\"submit\" value=\"Retour\" formaction=\"pageViewData.php\"> </td>";
-                    }
-                ?>
-
             </tr>
         </table>
     </form>
@@ -64,12 +53,10 @@
 }
 else
 {
-    die("<script>alert('Pas de patient trouvé');
-            window.location.href='pageViewData.php'</script>");
+    die("<script>alert('Pas de patient trouvé')</script>");
 }
 
 ?>
 
 </body>
-</center>
 </html>
