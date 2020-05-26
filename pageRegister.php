@@ -9,7 +9,7 @@ $currentDateTime = date('Y-m-d');
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>RentPlay</title>
+    <title>Register</title>
     <link rel="stylesheet" href="cssRegister.css">
 </head>
 
