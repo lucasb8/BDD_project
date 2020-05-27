@@ -25,13 +25,23 @@ include "navbar.php";
     <?php
     include "conn.php";
 
-    $sql="SELECT * FROM patient WHERE id_patient = '".$_SESSION['id']."'";
+    if($_SESSION['role'] == "0")
+    {
+        $sql="SELECT * FROM patient WHERE id_patient = '".$_SESSION['id']."'";
+        $id = $_SESSION['id'];
+    }
+    else
+    {
+        $sql="SELECT * FROM patient WHERE id_patient = '".$_GET['id']."'";
+        $id = $_GET['id'];
+    }
+
     $result = mysqli_query($conn, $sql);
 
     $rows = mysqli_fetch_array($result);
     ?>
 
-    <form  action="functionUpdate.php" method="post">
+    <form  action="<?php echo 'functionUpdate.php?id='.$id ?>" method="post">
         <table>
             <tr>
                 <?php
