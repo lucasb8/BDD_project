@@ -45,17 +45,15 @@ $apres = $ts + 604800; //TimeStamp Lundi suivant
 			alert(msg);
 		}
 		
-		function actionDate(time, e) //Action appelée lorsqu'on clique sur une date.
+		function oldConsultation(e)
 		{
-			if( (!document.all && e.which == 3) || (document.all && event.button == 2)) //Clic avec le bouton droit (la gestion est différente d'un navigateur à un autre)
-			{
-				msg = "Clic droit: " + time;
-			}
-			else //Clic avec le bouton gauche
-			{
-				msg = "Clic gauche: " + time;
-			}
+			msg = "Le rendez-vous est deja enregistré comme consultation !";
 			alert(msg);
+		}
+		
+		function newConsultation(id_Consultation, id_Patient, e) //Action appelée lorsqu'on clique sur une date.
+		{
+			document.location.href = "PageConsultation.php?id_C="+ id_Consultation+"&id_P="+ id_Patient;
 		}
 	</script>
 </head>
@@ -130,23 +128,40 @@ $apres = $ts + 604800; //TimeStamp Lundi suivant
 					else
 					{
 					?>
-						<td class = "noBorder" align="center" onMouseUp="actionDate('<?php echo date('Y-m-d', $jour);?>', event)">
+						<td class = "noBorder" align="center" >
 							<?php  //requete pour récuperer l'heure
                                 $index = $matrice[$i][$j];
                                 $sql = new mysqli("localhost", "root", "", "bdd_project");
                                 $result1 = $sql->query("SELECT * FROM rendez_vous WHERE ID_rendez_vous = '".$index."'");
                                 $rows = mysqli_fetch_array($result1);
-
-                                echo substr($rows["Heure"], 0, 5)."h".substr($rows["Minute"], 0, 5);
-							?>
+								
+								$result2 = $sql->query("SELECT COUNT(*) FROM consultation WHERE ID_rendez_vous = '".$rows['ID_rendez_vous']."'");
+								while ($row = $result2->fetch_assoc()) {
+									if ($row['COUNT(*)'] > 0){ ?>
+										<p onMouseUp="oldConsultation(event)">
+											<?php echo substr($rows['Heure'], 0, 5)."h".substr($rows['Minute'], 0, 5).'</br>';
+											
+											$result3 = $sql->query("SELECT Nom, Prenom FROM patient WHERE ID_patient = 
+												(SELECT ID_patient FROM rendez_vous WHERE ID_rendez_vous = '".$index."')");
+											$rows = mysqli_fetch_array($result3);
+											echo $rows["Prenom"];
+											echo $rows["Nom"];
+										?></p> <?php
+									} else { ?>
+										<p onMouseUp = "newConsultation('<?php echo $rows['ID_rendez_vous'];?>', '<?php echo $rows['ID_patient'];?>', event)">
+											<?php echo substr($rows['Heure'], 0, 5)."h".substr($rows['Minute'], 0, 5).'</br>';
+											
+											$result3 = $sql->query("SELECT Nom, Prenom FROM patient WHERE ID_patient = 
+												(SELECT ID_patient FROM rendez_vous WHERE ID_rendez_vous = '".$index."')");
+											$rows = mysqli_fetch_array($result3);
+											echo $rows["Prenom"];
+											echo $rows["Nom"]; 
+										?> </p> <?php
+									 }
+								}?>
 							<br>
 							<?php // requete pour récuperer le nom
-                                $result2 = $sql->query("SELECT Nom, Prenom FROM patient WHERE ID_patient = 
-                                                            (SELECT ID_patient FROM rendez_vous WHERE ID_rendez_vous = '".$index."')");
-                                $rows = mysqli_fetch_array($result2);
 
-                                echo $rows["Prenom"];
-                                echo $rows["Nom"];
 							?>
 						</td>
 					<?php 

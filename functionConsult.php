@@ -3,9 +3,8 @@ session_start();
 
 include("conn.php");
 
-$idRDV = 12;
-
-$ID_patient = (int)$_POST['id'];
+$idRDV = (int) $_GET['id_C'];
+$ID_patient = (int) $_GET['id_P'];
 $nature = $_POST['nature'];
 $anxiete = (int)$_POST['anxiete'];
 $prix = $_POST['prix'];

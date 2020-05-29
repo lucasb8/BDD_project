@@ -34,7 +34,6 @@ if(! isset($_SESSION['nom']))
     <?php
     include "conn.php";
 
-
     $sql="SELECT * FROM patient WHERE id_patient = '".$_SESSION['id']."'";
     $result = mysqli_query($conn, $sql);
 

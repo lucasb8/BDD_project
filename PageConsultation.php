@@ -31,28 +31,19 @@ include "navbar.php";
 
 
 	<div id="seeProfile">
+		<?php 
+		$id_Consultation=$_GET['id_C'];
+		$id_Patient=$_GET['id_P'];
+		?>
+		
 		<h1>Creation d'une consultation : </h1>
-		<form Method="post" action="functionConsult.php" name="submit">
+		<form Method="post" action="functionConsult.php?id_C=<?php echo $id_Consultation?>&id_P=<?php echo $id_Patient?>" name="submit">
 			<table>
 				<?php
 				include "conn.php";
 				$sql="SELECT * FROM patient ORDER BY nom";
 				$result = mysqli_query($conn, $sql);
 				?>
-				<tr>
-					<?php echo "Nom du patient : "; ?>
-					<select name="id">
-						<?php
-						while($rows = mysqli_fetch_array($result)){
-							if ($rows['Nom'] != "La Psy"){
-							?> 
-								<option value="<?php echo $rows['ID_patient'] ?>"> <?php echo $rows['Nom']." ".$rows['Prenom'];?> </option> 
-							<?php
-							}
-						}
-						?>	 			
-					</select>
-				</tr><br><br> 
 				<tr>
 					Nature : <input class="inputRegister" type="text" name="nature" required="required"> 
 				</tr><br><br>
