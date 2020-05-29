@@ -81,6 +81,7 @@ include "navbar.php";
             <th>Indicateur d'anxiété</th>
             <th>Prix</th>
             <th>Méthode de paiement</th>
+            <th>Commentaires</th>
             <th>Editer</th>
             <th>Supprimer</th>
         </tr>
@@ -105,6 +106,7 @@ include "navbar.php";
             echo "<td>".$rows1['Indicateur_anxiete']."</td>";
             echo "<td>".$rows1['Prix']."</td>";
             echo "<td>".$rows1['Methode_paiement']."</td>";
+            echo "<td>".$rows1['Commentaire']."</td>";
 
             $id = $rows1['ID_consultation'];
 
