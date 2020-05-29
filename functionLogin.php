@@ -42,7 +42,7 @@ if($row=mysqli_fetch_array($result))
         else if($_SESSION['role'] === "1")
         {
             echo "<script>alert('Ouiiii ! Connexion de la psy ".$_SESSION['nom']."');";
-            echo "window.location.href='pageSeeProfile.php';</script>";
+            echo "window.location.href='pageViewData.php';</script>";
         }
     }
     else
