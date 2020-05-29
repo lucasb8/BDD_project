@@ -67,7 +67,6 @@ $apres = $ts + 604800; //TimeStamp Lundi suivant
         ?>
     </header>
 
-	</br>
 	<h1 align="center"><?php echo $tabMois[date('m', $ts)].date('Y', $ts) ?> </h1>
 	<table>
 		<tr>
@@ -75,10 +74,18 @@ $apres = $ts + 604800; //TimeStamp Lundi suivant
 			$jour = $ts;
 			for ($j = 1; $j <= 7; $j++) {
 				if( ($j == date('w')) && ($week == date('W')) ){ ?>
-					<th align="center" style="background-color:black" id="jourJ"><b><?php echo $tabJour[$j]." ".date('d', $jour);?></b></th>
+					<th align="center" style="background-color:black" id="jourJ">
+						<b>
+							<?php echo $tabJour[$j]." ".date('d', $jour);?>
+						</b>
+					</th>
 				<?php }
 				else { ?>
-					<th align="center" ><b><?php echo $tabJour[$j]." ".date('d', $jour);?></b></th>
+					<th align="center" >
+						<b>
+							<?php echo $tabJour[$j]." ".date('d', $jour);?>
+						</b>
+					</th>
 				<?php }
 				$jour += 86400;
 			}
@@ -107,7 +114,6 @@ $apres = $ts + 604800; //TimeStamp Lundi suivant
 				$nbr -= 1;
 				$j++;
 			}
-			?> </br> <?php
 			$jour += 86400;
 		}
 		
