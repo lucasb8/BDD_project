@@ -32,7 +32,7 @@ include "navbar.php";
 
 	<div id="seeProfile">
 		<h1>Creation d'une consultation : </h1>
-		<form Method="post" action="ajout-note.php" name="submit">
+		<form Method="post" action="functionConsult.php" name="submit">
 			<table>
 				<?php
 				include "conn.php";
@@ -41,12 +41,12 @@ include "navbar.php";
 				?>
 				<tr>
 					<?php echo "Nom du patient : "; ?>
-					<select>
+					<select name="id">
 						<?php
 						while($rows = mysqli_fetch_array($result)){
 							if ($rows['Nom'] != "La Psy"){
-							?>
-								<option value="<?php echo $rows['ID_patient'];?>"><?php echo $rows['Nom']." ".$rows['Prenom'];?></option>
+							?> 
+								<option value="<?php echo $rows['ID_patient'] ?>"> <?php echo $rows['Nom']." ".$rows['Prenom'];?> </option> 
 							<?php
 							}
 						}
@@ -54,18 +54,32 @@ include "navbar.php";
 					</select>
 				</tr><br><br> 
 				<tr>
-					<?php echo "Moyen de payement : "; ?>
-					<select class="inputRegister" type="text" name="methodePayement">
+					Nature : <input class="inputRegister" type="text" name="nature" required="required"> 
+				</tr><br><br>
+				<tr>
+					Indicateur anxiété : 
+					<select class="inputRegister" type="text" name="anxiete">
+						<?php for ($i = 0; $i <= 10; $i++){ ?>
+							<option value="<?php echo $i ?>"> <?php echo $i; ?> </option>
+						<?php } ?>
+					</select> 
+				</tr><br><br>
+				<tr>
+					Moyen de payement : 
+					<select class="inputRegister" type="text" name="methodePaiement">
 						<option value="carte"> Carte bleue </option>
 						<option value="cheque"> Chèque </option>
 						<option value="espece"> Espèce </option>
-					</select> <br><br>
-				</tr>
+					</select> 
+				</tr><br><br>
 				<tr>
 					Prix : <input class="inputRegister" type="number" name="prix" required="required"> <br><br>
 				</tr>
-			</table
-			>
+				<tr>
+					Commentaire sur la seance : 
+					<textarea class="inputRegister" name="commentaire"></textarea>
+				</tr><br><br>
+			</table>
 			<input class="button" type="submit" value="Valider">
 		</form>
 	</div>
