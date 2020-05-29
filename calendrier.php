@@ -150,7 +150,7 @@ $apres = $ts + 604800; //TimeStamp Lundi suivant
 							<br>
 							<?php // requete pour récuperer le nom
                                 $result2 = $sql->query("SELECT Nom, Prenom FROM patient WHERE ID_patient = 
-                                                            (SELECT ID_patient FROM consultation WHERE ID_rendez_vous = '".$index."')");
+                                                            (SELECT ID_patient FROM rendez_vous WHERE ID_rendez_vous = '".$index."')");
                                 $rows = mysqli_fetch_array($result2);
 
                                 echo $rows["Prenom"];
