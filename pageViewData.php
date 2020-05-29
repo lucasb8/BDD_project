@@ -66,6 +66,9 @@ include "navbar.php";
 </div>
 
 
+
+
+
 <div class="group">
     <h1>Toutes les consultations</h1>
     <form action="pageViewData.php" method="post">
@@ -110,8 +113,8 @@ include "navbar.php";
 
             $id = $rows1['ID_consultation'];
 
-            echo "<td><a href='pageEditGame.php?gameId=".$id."'><button>Editer</button></a></td>";
-            echo "<td><a href='functionDeleteGame.php?gameId=".$id."'><button>Supprimer</button></a></td>";
+            echo "<td><a href='pageEditConsultation.php?id=".$id."'><button>Editer</button></a></td>";
+            echo "<td><a href='functionDeleteConsultation.php?id=".$id."'><button>Supprimer</button></a></td>";
             echo "</tr>";
         }
         ?>
