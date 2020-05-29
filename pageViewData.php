@@ -22,7 +22,7 @@ include "navbar.php";
 <div class="group">
     <h1>Recherche de patients :</h1>
     <form action="pageViewData.php" method="post">
-        <input type="text" name="search_key" placeholder="Entrer un nom !"/>
+        <input type="text" name="search_key" placeholder="Entrer un nom !" autocomplete="off"/>
         <input type="submit" value="Search" onclick=""/> <br/><br/>
     </form>
 
@@ -69,7 +69,7 @@ include "navbar.php";
 <div class="group">
     <h1>Toutes les consultations</h1>
     <form action="pageViewData.php" method="post">
-        <input type="text" name="search_key" placeholder="Rechercher par nom !"/>
+        <input type="text" name="search_key" placeholder="Rechercher par nom !" autocomplete="off"/>
         <input type="submit" value="Search" onclick=""/> <br/><br/>
     </form>
 

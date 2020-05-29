@@ -1,56 +1,40 @@
-<?php
-    session_start();
-    include "navbar.php";
-    include "conn.php";
-?>
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Rent Page</title>
-    <link rel="stylesheet" href="cssRegister.css">
-</head>
 
-<body class="background">
+<?php
+session_start();
+include "navbar.php";
+include "conn.php";
+?>
 
-<header>
-    <div id="nav">
-        <?php
-            navbar();
-        ?>
-</header>
 
 <?php
 
 if(isset($_GET["lundi"])) // Une semaine précise est demandée
 {
-	$ts = $_GET["lundi"];
+    $ts = $_GET["lundi"];
 }
 else //On prendra la semaine d'aujourd'hui
 {
-	$day = (date('w') - 1); //Jour dans la semaine... Lundi = 0
-	$diff = $day * 86400; //Différence en secondes par rapport au lundi
-	$ts = (time() - $diff); //On récupère le TimeStamp du lundi
+    $day = (date('w') - 1); //Jour dans la semaine... Lundi = 0
+    $diff = $day * 86400; //Différence en secondes par rapport au lundi
+    $ts = (time() - $diff); //On récupère le TimeStamp du lundi
 }
 
 //Initialisation des variables
 $tabJour = array("", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche");
 $tabMois = array("", "01"=>"Janvier ", "02"=>"Février ", "03"=>"Mars ", "04"=>"Avril ", "05"=>"Mai ",
-				 "06"=>"Juin ", "07"=>"Juillet ", "08"=>"Aout ", "09"=>"Septembre ", "10"=>"Octobre ",
-				 "11"=>"Novembre ", "12"=>"Décembre ");
+    "06"=>"Juin ", "07"=>"Juillet ", "08"=>"Aout ", "09"=>"Septembre ", "10"=>"Octobre ",
+    "11"=>"Novembre ", "12"=>"Décembre ");
 $week = date('W', $ts); //Semaine en cours
 $avant = $ts - 604800; //TimeStamp Lundi précédant
 $apres = $ts + 604800; //TimeStamp Lundi suivant
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Calendrier par Semaine</title>
 	<link rel="stylesheet" type="text/css" href="cssCalendrier.css">
-	
 	
 	<script type="text/javascript">
 		var msg = ""; //Initialisation de la variable "msg"
@@ -76,7 +60,15 @@ $apres = $ts + 604800; //TimeStamp Lundi suivant
 	</script>
 </head>
 
+
 <body>
+
+    <header>
+        <?php
+        navbar();
+        ?>
+    </header>
+
 	</br>
 	<h1 align="center"><?php echo $tabMois[date('m', $ts)].date('Y', $ts) ?> </h1>
 	<table>
