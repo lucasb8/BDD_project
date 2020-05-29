@@ -15,7 +15,8 @@ header ul {
 	padding: 0;
 }
 
-header li {
+header li
+{
 	float: left;
 	height: 100%;
 }
@@ -72,10 +73,6 @@ padding: 0px;
 	border: medium solid black;
 }
 
-h1, a {
-	font-family: sans-serif;
-	font-weight: bold;
-}
 
 #jourJ {
 	color: white;
