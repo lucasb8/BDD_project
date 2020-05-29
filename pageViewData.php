@@ -32,7 +32,7 @@ include "navbar.php";
     $search_key = isset($_POST['search_key'])?
         $_POST['search_key']:'';
 
-    $sql="SELECT* FROM patient WHERE Nom LIKE '%".
+    $sql= "SELECT* FROM patient WHERE Nom LIKE '%".
         $search_key. "%'";
     $result=mysqli_query($conn, $sql);
 
@@ -68,11 +68,19 @@ include "navbar.php";
 
 <div class="group">
     <h1>Toutes les consultations</h1>
+    <form action="pageViewData.php" method="post">
+        <input type="text" name="search_key" placeholder="Rechercher par nom !"/>
+        <input type="submit" value="Search" onclick=""/> <br/><br/>
+    </form>
 
     <table border="1" style="text-align: center">
         <tr bgcolor="#f08080">
+            <th>Nom du patient</th>
+            <th>Prénom du patient</th>
             <th>Nature</th>
             <th>Indicateur d'anxiété</th>
+            <th>Prix</th>
+            <th>Méthode de paiement</th>
             <th>Editer</th>
             <th>Supprimer</th>
         </tr>
@@ -80,16 +88,25 @@ include "navbar.php";
 
         <?php
         include("conn.php");
-        $sql1 = "Select * from consultation";
+        
+        $search_key = isset($_POST['search_key'])?
+            $_POST['search_key']:'';
+
+        $sql1 = "SELECT * FROM consultation c JOIN patient p ON c.ID_patient = p.ID_patient WHERE Nom LIKE '%".$search_key."%'";
+
         $result1 = mysqli_query($conn, $sql1);
 
-        while($rows = mysqli_fetch_array($result1))
+        while($rows1 = mysqli_fetch_array($result1))
         {
             echo "<tr>";
-            echo "<td>".$rows['Nature']."</td>";
-            echo "<td>".$rows['Indicateur_anxiété']."</td>";
+            echo "<td>".$rows1['Prenom']."</td>";
+            echo "<td>".$rows1['Nom']."</td>";
+            echo "<td>".$rows1['Nature']."</td>";
+            echo "<td>".$rows1['Indicateur_anxiete']."</td>";
+            echo "<td>".$rows1['Prix']."</td>";
+            echo "<td>".$rows1['Methode_paiement']."</td>";
 
-            $id = $rows['ID_consultation'];
+            $id = $rows1['ID_consultation'];
 
             echo "<td><a href='pageEditGame.php?gameId=".$id."'><button>Editer</button></a></td>";
             echo "<td><a href='functionDeleteGame.php?gameId=".$id."'><button>Supprimer</button></a></td>";
