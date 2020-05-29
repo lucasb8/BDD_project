@@ -135,23 +135,26 @@ $apres = $ts + 604800; //TimeStamp Lundi suivant
 					
 					<?php 
 					}
-					else{
+					else
+					{
 					?>
 						<td class = "noBorder" align="center" onMouseUp="actionDate('<?php echo date('Y-m-d', $jour);?>', event)">
 							<?php  //requete pour récuperer l'heure
-							$index = $matrice[$i][$j]; 
-							$sql = new mysqli("localhost", "root", "", "bdd_project");
-							$result1 = $sql->query("SELECT * FROM rendez_vous WHERE ID_rendez_vous = '".$index."'");
-							$rows = mysqli_fetch_array($result1);
-							echo substr($rows["Heure"], 0, 5);
+                                $index = $matrice[$i][$j];
+                                $sql = new mysqli("localhost", "root", "", "bdd_project");
+                                $result1 = $sql->query("SELECT * FROM rendez_vous WHERE ID_rendez_vous = '".$index."'");
+                                $rows = mysqli_fetch_array($result1);
+
+                                echo substr($rows["Heure"], 0, 5)."h".substr($rows["Minute"], 0, 5);
 							?>
-							</br>
+							<br>
 							<?php // requete pour récuperer le nom
-							$result2 = $sql->query("SELECT Nom, Prenom FROM patient WHERE ID_patient = 
-														(SELECT ID_patient FROM consultation WHERE ID_rendez_vous = '".$index."')");
-							$rows = mysqli_fetch_array($result2);
-							echo $rows["Prenom"];
-							echo $rows["Nom"];
+                                $result2 = $sql->query("SELECT Nom, Prenom FROM patient WHERE ID_patient = 
+                                                            (SELECT ID_patient FROM rendez_vous WHERE ID_rendez_vous = '".$index."')");
+                                $rows = mysqli_fetch_array($result2);
+
+                                echo $rows["Prenom"];
+                                echo $rows["Nom"];
 							?>
 						</td>
 					<?php 
