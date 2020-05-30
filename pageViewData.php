@@ -33,32 +33,66 @@ include "navbar.php";
         $_POST['search_key']:'';
 
     $sql= "SELECT* FROM patient WHERE Nom LIKE '%".
-        $search_key. "%'";
+        $search_key. "%' AND enregistre = 1";
     $result=mysqli_query($conn, $sql);
 
+    $sql1= "SELECT* FROM patient WHERE Nom LIKE '%".
+        $search_key. "%' AND enregistre = 0";
+    $result1=mysqli_query($conn, $sql1);
 
+
+    echo "<h2>Patients enregistrés</h2>";
 
     echo "<table border=\"1\" style=\"text-align: center\">";
-    echo "<tr bgcolor='f08080'>";
-    echo "<td>Nom</td>";
-    echo "<td>Prénom</td>";
-    echo "<td>Catégorie Sociale</td>";
-    echo "<td>Email</td>";
-    echo "<td>Moyen de connaissance</td>";
-    echo "<td>Editer</td>";
-    echo "<td>Supprimer</td>";
+        echo "<tr bgcolor='f08080'>";
+        echo "<td>Nom</td>";
+        echo "<td>Prénom</td>";
+        echo "<td>Catégorie Sociale</td>";
+        echo "<td>Email</td>";
+        echo "<td>Moyen de connaissance</td>";
+        echo "<td>Editer</td>";
+        echo "<td>Supprimer</td>";
+        echo "</tr>";
+
+        while($rows = mysqli_fetch_array($result))
+        {
+            echo "<tr>";
+                echo "<td>".$rows['Nom']."</td>";
+                echo "<td>".$rows['Prenom']."</td>";
+                echo "<td>".$rows['Categorie_sociale']."</td>";
+                echo "<td>".$rows['Email']."</td>";
+                echo "<td>".$rows['Moyen_connaissance']."</td>";
+                echo "<td><a href='pageEditProfile.php?id=".$rows['ID_patient']."'><button>Editer</button></a></td>";
+                echo "<td><a href='functionDeletePatient.php?id=".$rows['ID_patient']."'><button>Supprimer</button></a></td>";
+            echo "</tr>";
+        }
+    echo "</table>";
+
+
+
+    echo "<h2>Patients non enregistrés</h2>";
+
+    echo "<table border=\"1\" style=\"text-align: center\">";
+        echo "<tr bgcolor='f08080'>";
+        echo "<td>Nom</td>";
+        echo "<td>Prénom</td>";
+        echo "<td>Catégorie Sociale</td>";
+        echo "<td>Email</td>";
+        echo "<td>Moyen de connaissance</td>";
+        echo "<td>Ajouter</td>";
+        echo "<td>Supprimer</td>";
     echo "</tr>";
 
-    while($rows = mysqli_fetch_array($result))
+    while($rows1 = mysqli_fetch_array($result1))
     {
         echo "<tr>";
-        echo "<td>".$rows['Nom']."</td>";
-        echo "<td>".$rows['Prenom']."</td>";
-        echo "<td>".$rows['Categorie_sociale']."</td>";
-        echo "<td>".$rows['Email']."</td>";
-        echo "<td>".$rows['Moyen_connaissance']."</td>";
-        echo "<td><a href='pageEditProfile.php?id=".$rows['ID_patient']."'><button>Editer</button></a></td>";
-        echo "<td><a href='functionDeletePatient.php?id=".$rows['ID_patient']."'><button>Supprimer</button></a></td>";
+            echo "<td>".$rows1['Nom']."</td>";
+            echo "<td>".$rows1['Prenom']."</td>";
+            echo "<td>".$rows1['Categorie_sociale']."</td>";
+            echo "<td>".$rows1['Email']."</td>";
+            echo "<td>".$rows1['Moyen_connaissance']."</td>";
+            echo "<td><a href='insert.php?id=".$rows1['ID_patient']."'><button>Ajouter</button></a></td>";
+            echo "<td><a href='functionDeletePatient.php?id=".$rows1['ID_patient']."'><button>Supprimer</button></a></td>";
         echo "</tr>";
     }
     echo "</table>";
