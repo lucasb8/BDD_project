@@ -50,18 +50,24 @@ include "navbar.php";
         echo "<td>Catégorie Sociale</td>";
         echo "<td>Email</td>";
         echo "<td>Moyen de connaissance</td>";
+        echo "<td>Profession</td>";
         echo "<td>Editer</td>";
         echo "<td>Supprimer</td>";
         echo "</tr>";
 
         while($rows = mysqli_fetch_array($result))
         {
+            $sql2= "SELECT * FROM profession WHERE ID_patient = '".$rows['ID_patient']."' ORDER BY Date DESC";
+            $result2=mysqli_query($conn, $sql2);
+            $rows2 = mysqli_fetch_array($result2);
+
             echo "<tr>";
                 echo "<td>".$rows['Nom']."</td>";
                 echo "<td>".$rows['Prenom']."</td>";
                 echo "<td>".$rows['Categorie_sociale']."</td>";
                 echo "<td>".$rows['Email']."</td>";
                 echo "<td>".$rows['Moyen_connaissance']."</td>";
+                echo "<td>".$rows2['Nom_profession']."</td>";
                 echo "<td><a href='pageEditProfile.php?id=".$rows['ID_patient']."'><button>Editer</button></a></td>";
                 echo "<td><a href='functionDeletePatient.php?id=".$rows['ID_patient']."'><button>Supprimer</button></a></td>";
             echo "</tr>";
@@ -79,19 +85,25 @@ include "navbar.php";
         echo "<td>Catégorie Sociale</td>";
         echo "<td>Email</td>";
         echo "<td>Moyen de connaissance</td>";
+        echo "<td>Profession</td>";
         echo "<td>Ajouter</td>";
         echo "<td>Supprimer</td>";
     echo "</tr>";
 
     while($rows1 = mysqli_fetch_array($result1))
     {
+        $sql3= "SELECT * FROM profession WHERE ID_patient = '".$rows1['ID_patient']."' ORDER BY Date DESC";
+        $result3=mysqli_query($conn, $sql3);
+        $rows3 = mysqli_fetch_array($result3);
+
         echo "<tr>";
             echo "<td>".$rows1['Nom']."</td>";
             echo "<td>".$rows1['Prenom']."</td>";
             echo "<td>".$rows1['Categorie_sociale']."</td>";
             echo "<td>".$rows1['Email']."</td>";
             echo "<td>".$rows1['Moyen_connaissance']."</td>";
-            echo "<td><a href='insert.php?id=".$rows1['ID_patient']."'><button>Ajouter</button></a></td>";
+            echo "<td>".$rows3['Nom_profession']."</td>";
+            echo "<td><a href='insert.php?ID=".$rows1['ID_patient']."'><button>Ajouter</button></a></td>";
             echo "<td><a href='functionDeletePatient.php?id=".$rows1['ID_patient']."'><button>Supprimer</button></a></td>";
         echo "</tr>";
     }
@@ -137,8 +149,8 @@ include "navbar.php";
         while($rows1 = mysqli_fetch_array($result1))
         {
             echo "<tr>";
-            echo "<td>".$rows1['Prenom']."</td>";
             echo "<td>".$rows1['Nom']."</td>";
+            echo "<td>".$rows1['Prenom']."</td>";
             echo "<td>".$rows1['Nature']."</td>";
             echo "<td>".$rows1['Indicateur_anxiete']."</td>";
             echo "<td>".$rows1['Prix']."</td>";
