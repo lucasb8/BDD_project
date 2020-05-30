@@ -32,18 +32,22 @@ include "navbar.php";
 
 	<div id="seeProfile">
 		<?php 
-		$id_Consultation=$_GET['id_C'];
-		$id_Patient=$_GET['id_P'];
+		$id_Consultation = $_GET['id_C'];
+		$id_Patient = $_GET['id_P'];
 		?>
 		
 		<h1>Creation d'une consultation : </h1>
 		<form Method="post" action="functionConsult.php?id_C=<?php echo $id_Consultation?>&id_P=<?php echo $id_Patient?>" name="submit">
 			<table>
-				<?php
-				include "conn.php";
-				$sql="SELECT * FROM patient ORDER BY nom";
-				$result = mysqli_query($conn, $sql);
-				?>
+				<tr>
+					<?php 
+					include "conn.php";
+					$sql="SELECT * FROM patient WHERE ID_patient = '".$id_Patient."'";
+					$result_nom = mysqli_query($conn, $sql);
+					while($rows = mysqli_fetch_array($result_nom)){ ?>
+						Patient : <?php echo $rows['Nom']." ".$rows['Prenom'] ?>
+					<?php } ?>
+				</tr><br><br>
 				<tr>
 					Nature : <input class="inputRegister" type="text" name="nature" required="required"> 
 				</tr><br><br>
@@ -70,6 +74,42 @@ include "navbar.php";
 					Commentaire sur la seance : 
 					<textarea class="inputRegister" name="commentaire"></textarea>
 				</tr><br><br>
+				<tr>
+					Invité 1 :
+					
+					<?php
+					$sql="SELECT * FROM patient ORDER BY nom";
+					$result_inv1 = mysqli_query($conn, $sql);
+					?>
+				
+					<select class="inputRegister" type="text" name="invite1">
+						<option value="-1"> Aucun </option>
+						<?php
+						while($rows = mysqli_fetch_array($result_inv1)){
+							if (($rows['Nom'] != "La Psy")  && ($rows['ID_patient'] != $id_Patient)){ ?>
+								<option value="<?php echo $rows['ID_patient'] ?>"> <?php echo $rows['Nom']." ".$rows['Prenom']; ?> </option>
+							<?php }
+						} ?>
+					</select>
+				</tr><br><br>
+				<tr>
+					Invité 2 :
+					
+					<?php
+					$result_inv2 = mysqli_query($conn, $sql);
+					?>
+					
+					<select class="inputRegister" type="text" name="invite2">
+						<option value="-1"> Aucun </option>
+						<?php
+						while($rows = mysqli_fetch_array($result_inv2)){
+							if (($rows['Nom'] != "La Psy") && ($rows['ID_patient'] != $id_Patient)){ ?>
+								<option value="<?php echo $rows['ID_patient'] ?>"> <?php echo $rows['Nom']." ".$rows['Prenom']; ?> </option>
+							<?php }
+						} ?>
+					</select>
+				</tr><br><br>
+				<tr>
 			</table>
 			<input class="button" type="submit" value="Valider">
 		</form>
