@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 include "navbar.php";
 ?>
@@ -61,15 +62,18 @@ if(! isset($_SESSION['nom']))
     <h1>Vos rendez-vous</h1>
 
     <?php
+        $date = date("Y-m-d");
 
-    $sql1 = "SELECT * FROM rendez_vous WHERE ID_patient = '".$_SESSION['id']."'";
-    $result1 = mysqli_query($conn, $sql1);
+        $sql1 = "SELECT * FROM rendez_vous WHERE ID_patient = '".$_SESSION['id']."' AND Date > '".$date."'";
+        $result1 = mysqli_query($conn, $sql1);
 
-    while($rows = mysqli_fetch_array($result1)) {
+    while($rows = mysqli_fetch_array($result1))
+    {
+         echo "<br/><br/>";
+         echo "<a>" . "Date : " . $rows['Date'] . "</a><br/><br/>";
 
-        echo "<br/><br/>";
-        echo "<a>" . "Date : " . $rows['Date'] . "</a><br/><br/>";
-        echo "<a>" . "Heure : " . $rows['Heure'] ."h". $rows['Minute'] . "</a><br/><br/>";
+         if($rows['Minute'] == 0) { echo "<a>" . "Heure : " . $rows['Heure'] ."h00</a><br/><br/>"; }
+         else { echo "<a>" . "Heure : " . $rows['Heure'] ."h". $rows['Minute'] . "</a><br/><br/>"; }
     }
 
     ?>
