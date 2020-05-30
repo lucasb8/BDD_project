@@ -66,8 +66,10 @@ $apres = $ts + 604800; //TimeStamp Lundi suivant
         navbar();
         ?>
     </header>
-
+	
+	</br></br></br></br>
 	<h1 align="center"><?php echo $tabMois[date('m', $ts)].date('Y', $ts) ?> </h1>
+	</br>
 	<table>
 		<tr>
 			<?php 
