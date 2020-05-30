@@ -70,10 +70,15 @@ if(! isset($_SESSION['nom']))
     while($rows = mysqli_fetch_array($result1))
     {
          echo "<br/><br/>";
-         echo "<a>" . "Date : " . $rows['Date'] . "</a><br/><br/>";
+         echo "<a>" . "Date : " . $rows['Date'] . "</a><br/>";
 
-         if($rows['Minute'] == 0) { echo "<a>" . "Heure : " . $rows['Heure'] ."h00</a><br/><br/>"; }
-         else { echo "<a>" . "Heure : " . $rows['Heure'] ."h". $rows['Minute'] . "</a><br/><br/>"; }
+         if($rows['Minute'] == 0) { echo "<a>" . "Heure : " . $rows['Heure'] ."h00</a><br/>"; }
+         else { echo "<a>" . "Heure : " . $rows['Heure'] ."h". $rows['Minute'] . "</a><br/>"; }
+		 if ($rows['Valide'] == 1){
+			 echo "<a>" . "Valide". "</a><br/>";
+		 } else {
+			 echo "<a>" . "En attente". "</a><br/>";
+		 }
     }
 
     ?>

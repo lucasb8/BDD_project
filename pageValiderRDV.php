@@ -45,8 +45,8 @@ $currentDateTime = date('Y-m-d');
 
             echo "<div class='add_button'>";
                 echo "<form action='insertRDV.php?ID=".$rows['ID_rendez_vous']."' method='post'>";
+				echo "<input type='submit' class='game_rent_choose' name='choix' value='Accepter' onclick=''/>";
 				echo "<input type='submit' class='game_rent_choose' name='choix' value='Refuser' onclick=''/>";
-                echo "<input type='submit' class='game_rent_choose' name='choix' value='Accepter' onclick=''/>";
                 echo "</form>";
                 echo "</br>";
             echo "</div>";
