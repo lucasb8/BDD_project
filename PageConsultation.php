@@ -58,9 +58,9 @@ include "navbar.php";
 				<tr>
 					Moyen de payement : 
 					<select class="inputRegister" type="text" name="methodePaiement">
-						<option value="carte"> Carte bleue </option>
-						<option value="cheque"> Chèque </option>
-						<option value="espece"> Espèce </option>
+						<option value="Carte Bleue"> Carte bleue </option>
+						<option value="Chèque"> Chèque </option>
+						<option value="Espèce"> Espèce </option>
 					</select> 
 				</tr><br><br>
 				<tr>
