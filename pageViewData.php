@@ -124,6 +124,7 @@ include "navbar.php";
 
     <table border="1" style="text-align: center">
         <tr bgcolor="#f08080">
+            <th>Date</th>
             <th>Nom du patient</th>
             <th>Prénom du patient</th>
             <th>Nature</th>
@@ -142,13 +143,17 @@ include "navbar.php";
         $search_key = isset($_POST['search_key'])?
             $_POST['search_key']:'';
 
-        $sql1 = "SELECT * FROM consultation c JOIN patient p ON c.ID_patient = p.ID_patient WHERE Nom LIKE '%".$search_key."%'";
+        $sql1 = "SELECT * FROM consultation c 
+                    JOIN patient p ON c.ID_patient = p.ID_patient 
+                    JOIN rendez_vous r ON c.ID_rendez_vous = r.ID_rendez_vous 
+                WHERE Nom LIKE '%".$search_key."%'";
 
         $result1 = mysqli_query($conn, $sql1);
 
         while($rows1 = mysqli_fetch_array($result1))
         {
             echo "<tr>";
+            echo "<td>".$rows1['Date']."</td>";
             echo "<td>".$rows1['Nom']."</td>";
             echo "<td>".$rows1['Prenom']."</td>";
             echo "<td>".$rows1['Nature']."</td>";
