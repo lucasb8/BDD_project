@@ -5,7 +5,7 @@ include("conn.php");
 
 $admin = false;
 
-$sqlAdmin = "Select * from patient WHERE role = 1";
+$sqlAdmin = "SELECT * FROM patient WHERE role = 1";
 $resultAdmin = mysqli_query($conn, $sqlAdmin);
 
 while($rows = mysqli_fetch_array($resultAdmin))
@@ -19,22 +19,41 @@ while($rows = mysqli_fetch_array($resultAdmin))
 if($admin == true)          // La psy veut valider un rdv
 {
     $validation = 1;
+	
+	$choix = $_POST['choix'];
     $rdvid = $_GET['ID'];
 
-    $sql = "Update rendez_vous SET ".
-        "valide = '$validation' Where ID_rendez_vous = '$rdvid'";
 
-    mysqli_query($conn, $sql);
+	if ($choix == "Accepter"){
+		$sql = "UPDATE rendez_vous SET ".
+			"valide = '$validation' Where ID_rendez_vous = '$rdvid'";
 
-    echo mysqli_error($conn);
-    if(mysqli_affected_rows($conn)<=0)
-    {
-        die("<script>alert('Cannot update data!');
-        window.location.href='pageLogin.php;</script>");
-    }
+		mysqli_query($conn, $sql);
 
-    echo "<script> alert('Le rendez a été confirmé !'); </script>";
-    echo "<script> window.location.href='pageSeeProfile.php'; </script>";
+		echo mysqli_error($conn);
+		if(mysqli_affected_rows($conn)<=0)
+		{
+			die("<script>alert('Cannot update data!');
+			window.location.href='pageLogin.php;</script>");
+		}
+
+		echo "<script> alert('Le rendez a été confirmé !'); </script>";
+		echo "<script> window.location.href='pageSeeProfile.php'; </script>";
+	} else if ($choix == "Refuser"){
+		$sql = "DELETE FROM rendez_vous WHERE ID_rendez_vous = '$rdvid'";
+		mysqli_query($conn, $sql);
+
+		echo mysqli_error($conn);
+		if(mysqli_affected_rows($conn)<=0)
+		{
+			die("<script>alert('Cannot update data!');
+			window.location.href='pageLogin.php;</script>");
+		}
+
+		echo "<script> alert('Le rendez a été refusé !'); </script>";
+		echo "<script> window.location.href='pageSeeProfile.php'; </script>";
+		
+	}
 }
 else                        // Le patient demande un rdv
 {
@@ -54,7 +73,9 @@ else                        // Le patient demande un rdv
     }
 
 
-    $sql = "Select * from rendez_vous WHERE valide = 1 AND Date = '".$date."' AND Heure = '".$heure."' AND Minute = '".$minute."'";            // Vérifier si même date
+    $sql = "SELECT * FROM rendez_vous WHERE Date = '".$date."'
+										AND Heure = '".$heure."' 
+										AND Minute = '".$minute."'";            // Vérifier si même date
     $result = mysqli_query($conn, $sql);
 
 

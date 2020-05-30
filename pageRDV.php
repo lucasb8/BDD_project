@@ -58,7 +58,7 @@ else if($_SESSION['role'] === "1")
                     </select>
                     <p>Minute : </p>
                     <select name="minute" id="minute">
-                        <option value="0">00</option>
+                        <option value="00">00</option>
                         <option value="30">30</option>
                     </select>
                 </form>

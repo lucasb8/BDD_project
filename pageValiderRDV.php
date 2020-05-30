@@ -29,13 +29,13 @@ $currentDateTime = date('Y-m-d');
     <?php
 
     include "conn.php";
-    $sql = "Select * from rendez_vous WHERE valide = 0";
+    $sql = "SELECT * FROM rendez_vous WHERE valide = 0";
     $result = mysqli_query($conn, $sql);
 
     while($rows = mysqli_fetch_array($result))
     {
         $idPatient = $rows['ID_patient'];
-        $sqlPatient = "Select * from patient WHERE ID_patient = '".$idPatient."'";
+        $sqlPatient = "SELECT * FROM patient WHERE ID_patient = '".$idPatient."'";
         $resultPatient = mysqli_query($conn, $sqlPatient);
         $rowsPatient = mysqli_fetch_array($resultPatient);
 
@@ -45,7 +45,8 @@ $currentDateTime = date('Y-m-d');
 
             echo "<div class='add_button'>";
                 echo "<form action='insertRDV.php?ID=".$rows['ID_rendez_vous']."' method='post'>";
-                echo "<input type='submit' class='game_rent_choose' name='game_rent_choose' value='Accepter' onclick=''/>";
+				echo "<input type='submit' class='game_rent_choose' name='choix' value='Refuser' onclick=''/>";
+                echo "<input type='submit' class='game_rent_choose' name='choix' value='Accepter' onclick=''/>";
                 echo "</form>";
                 echo "</br>";
             echo "</div>";
