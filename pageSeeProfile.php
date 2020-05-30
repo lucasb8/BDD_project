@@ -35,8 +35,13 @@ if(! isset($_SESSION['nom']))
     <?php
     include "conn.php";
 
-    $sql="SELECT * FROM patient WHERE id_patient = '".$_SESSION['id']."'";
+    $sql = "SELECT * FROM patient WHERE id_patient = '".$_SESSION['id']."'";
     $result = mysqli_query($conn, $sql);
+
+    $sql1= "SELECT * FROM profession WHERE ID_patient = '".$_SESSION['id']."' ORDER BY Date DESC";
+    $result1 = mysqli_query($conn, $sql1);
+    $rows1 = mysqli_fetch_array($result1);
+
 
     $rows = mysqli_fetch_array($result);
 
@@ -44,6 +49,7 @@ if(! isset($_SESSION['nom']))
         echo "<a>"."Prénom : ".$rows['Prenom']."</a><br/><br/>";
         echo "<a>"."Catégorie Sociale : ".$rows['Categorie_sociale']."</a><br/><br/>";
         echo "<a>"."Email : ".$rows['Email']."</a><br/><br/>";
+        echo "<a>"."Profession : ".$rows1['Nom_profession']."</a><br/><br/>";
         echo "<a>"."Comment m'avez-vous connue : ".$rows['Moyen_connaissance']."</a><br/><br/>";
         echo "<a class='button' href='pageEditProfile.php?id=".$rows['ID_patient']."'>Modifier votre profil</a>";
 

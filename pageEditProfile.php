@@ -37,8 +37,11 @@ include "navbar.php";
     }
 
     $result = mysqli_query($conn, $sql);
-
     $rows = mysqli_fetch_array($result);
+
+    $sql2= "SELECT * FROM profession WHERE ID_patient = '".$id."' ORDER BY Date DESC";
+    $result2=mysqli_query($conn, $sql2);
+    $rows2 = mysqli_fetch_array($result2);
     ?>
 
     <form  action="<?php echo 'functionUpdate.php?id='.$id ?>" method="post">
@@ -67,6 +70,12 @@ include "navbar.php";
                 echo "<a>"."Email : ".$rows['Email']."</a>";
                 ?>
                 <br><input class="inputRegister" placeholder = "Nouveau mail" type="email" name="adresse_email" autocomplete="off"> <br><br>
+            </tr>
+            <tr>
+                <?php
+                    echo "<a>"."Profession : ".$rows2['Nom_profession']."</a>";
+                ?>
+                <br><input class="inputRegister" placeholder = "Nouvelle Profession" type="text" name="profession" autocomplete="off"> <br><br>
             </tr>
         </table>
         <input class="button" type="submit" value="Valider">

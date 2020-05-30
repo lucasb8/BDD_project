@@ -65,20 +65,22 @@ else
             die("Erreur : " . mysqli_error($conn));
         }
 
-        if(!empty($_POST['profession'])){
+        if(!empty($_POST['profession']))
+        {
             $profession = $_POST['profession'];
 
             $sql2 = "SELECT * FROM patient";
-            $result1 = mysqli_query($conn, $sql2);
+            $result2 = mysqli_query($conn, $sql2);
 
-            while ($row = $result1->fetch_array())
+            while ($row = $result2->fetch_array())
             {
                 if ($row["Email"] == $email)
                 {
                     $id_patient = $row["ID_patient"];
+                    $date = date("Y-m-d");
 
-                    $sql2 = "INSERT INTO profession(Nom_profession, ID_patient) 
-						VALUE('$profession', '$id_patient')";
+                    $sql2 = "INSERT INTO profession(Nom_profession, ID_patient, Date) 
+						VALUE('$profession', '$id_patient', '$date')";
                     if (!mysqli_query($conn, $sql2))
                     {
                         die("Erreur : " . mysqli_error($conn));
