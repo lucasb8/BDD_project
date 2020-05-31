@@ -11,15 +11,6 @@ body {
     background-size: cover;
 }
 
-body.background1 {
-    background-image: url(Image/NewGameBackground.jpg);
-
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-}
-
-
 
 header {
     position: fixed;
@@ -59,13 +50,7 @@ header li a:hover {
 
 
 
-
-
-
-
-
-
-#registerCard
+#boite_register
 {
     background: rgba(245,245,245,0.5);
 
@@ -84,28 +69,6 @@ header li a:hover {
 
     text-align: center;
 }
-
-#gameAddCard
-{
-    background: rgba(245,245,245,0.8);
-
-    border-color: black;
-    border-style: inset;
-    border-radius: 25px;
-
-    padding: 5px 50px 20px 50px;
-
-    max-width: 250px;
-    width: 50%;
-
-    margin: auto;
-    margin-top: 160px;
-    align-content: center;
-
-    text-align: center;
-}
-
-
 
 
 

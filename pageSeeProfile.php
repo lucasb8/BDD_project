@@ -30,7 +30,7 @@ if(! isset($_SESSION['nom']))
 </header>
 
 <div id="seeProfile">
-    <h1>Voici votre profil</h1>
+    <h1>Voici votre profil:</h1>
 
     <?php
     include "conn.php";
@@ -51,21 +51,21 @@ if(! isset($_SESSION['nom']))
         echo "<a>"."Email : ".$rows['Email']."</a><br/><br/>";
         echo "<a>"."Profession : ".$rows1['Nom_profession']."</a><br/><br/>";
         echo "<a>"."Comment m'avez-vous connue : ".$rows['Moyen_connaissance']."</a><br/><br/>";
-        echo "<a class='button' href='pageEditProfile.php?id=".$rows['ID_patient']."'>Modifier votre profil</a>";
-
+        echo "<a class='button' href='pageEditProfile.php?id=".$rows['ID_patient']."'>Modifier votre profil</a></br>";
     ?>
 </div>
 
 <div class="rents">
-    <h1>Demander un rendez-vous</h1>
+    <h1>Demander un rendez-vous :</h1>
 
     <?php
-    echo "<a class='button' href='pageRDV.php?id=".$rows['ID_patient']."'>Demander un rendez-vous</a>";
+    echo "<a class='button' href='pageRDV.php?id=".$rows['ID_patient']."'>Demander un rendez-vous</a></br>";
     ?>
+	</br>
 </div>
 
 <div class="rents">
-    <h1>Vos rendez-vous</h1>
+    <h1>Vos rendez-vous :</h1>
 
     <?php
         $date = date("Y-m-d");
@@ -75,7 +75,7 @@ if(! isset($_SESSION['nom']))
 
     while($rows = mysqli_fetch_array($result1))
     {
-         echo "<br/><br/>";
+         echo "<br/>";
          echo "<a>" . "Date : " . $rows['Date'] . "</a><br/>";
 
          if($rows['Minute'] == 0) { echo "<a>" . "Heure : " . $rows['Heure'] ."h00</a><br/>"; }
@@ -86,9 +86,8 @@ if(! isset($_SESSION['nom']))
 			 echo "<a>" . "En attente". "</a><br/>";
 		 }
     }
-
     ?>
-
+	</br>
 </div>
 
 </body>

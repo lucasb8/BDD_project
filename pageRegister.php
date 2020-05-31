@@ -21,8 +21,9 @@ $currentDateTime = date('Y-m-d');
     ?>
 </header>
 
-    <div id="registerCard">
-        <h3>Enregistrez-vous s'il vous plait !<br>Je suis très gentille vous verrez !</h3>
+    <div id="boite_register">
+        <h1>Enregistrement :</h1>
+		<h3>Je suis très gentille vous verrez !</h3>
         <form  action="insert.php" method="post">
             <table>
                 <tr>
@@ -54,8 +55,8 @@ $currentDateTime = date('Y-m-d');
                     Quel est votre profession actuelle (Facultatif):<br><input class="inputRegister" type="text" name="profession" autocomplete="off"> <br><br>
                 </tr>
             </table>
-            <input class="button" type="submit" value="Valider">
-            <input class="button" type="reset" name="Réinitailiser">
+            <input class="button" type="submit" value="Enregistrer">
+            &nbsp; &nbsp; <input class="button" type="reset" name="Effacer">
         </form>
     </div>
 

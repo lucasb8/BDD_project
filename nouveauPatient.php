@@ -24,7 +24,7 @@ $currentDateTime = date('Y-m-d');
 
 
 
-<div id="registerCard">
+<div id="boite_register">
     <h3>Voici les nouvelles demandes d'enregistrement. Qui voulez-vous accepter ?</h3>
     <?php
 

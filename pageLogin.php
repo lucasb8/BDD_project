@@ -19,7 +19,7 @@ include "navbar.php";
     </header>
 
     <div id="loginDiv">
-        <h1>Login:</h1>
+        <h1>Connexion:</h1>
         <form method="post" action="functionLogin.php">
             <table>
                 <tr>
@@ -30,8 +30,8 @@ include "navbar.php";
                 </tr>
                 <tr>
                     <th colspan="2"><br/>
-                        <input class="button" id="login" type="submit" value="Login"/>
-                        &nbsp; &nbsp; <input class="button" type="reset" value="Réinitialiser">
+                        <input class="button" id="login" type="submit" value="Connexion"/>
+                        &nbsp; &nbsp; <input class="button" type="reset" value="Effacer">
                     </th>
                 </tr>
             </table>

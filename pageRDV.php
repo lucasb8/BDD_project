@@ -19,8 +19,8 @@ else if($_SESSION['role'] === "1")
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Rent Page</title>
-    <link rel="stylesheet" href="cssRent.css">
+    <title>Prendre rendez-vous</title>
+    <link rel="stylesheet" href="cssRegister.css">
 </head>
 
 <body class="background">
@@ -36,8 +36,8 @@ else if($_SESSION['role'] === "1")
     $currentDateTime = date('Y-m-d');
 ?>
 
-<div id="form">
-    <h3>Quand voulez-vous me rencontrer ?</h3>
+<div id="boite_register">
+    <h2>Quand voulez-vous me rencontrer ?</h2>
     <form  method="post" action="insertRDV.php" >
         <table>
             <tr>
@@ -69,7 +69,7 @@ else if($_SESSION['role'] === "1")
             </tr>
         </table>
         <input class="button" type="submit" value="Confirmer">
-        <input class="button" type="reset" name="Reset">
+        &nbsp; &nbsp;<input class="button" type="reset" name="Reset">
     </form>
 </div>
 
