@@ -155,9 +155,15 @@ $apres = $ts + 604800; //TimeStamp Lundi suivant
 											
 											$result3 = $sql->query("SELECT Nom, Prenom FROM patient WHERE ID_patient = 
 												(SELECT ID_patient FROM rendez_vous WHERE ID_rendez_vous = '".$index."')");
-											$rows = mysqli_fetch_array($result3);
-											echo $rows["Prenom"];
-											echo $rows["Nom"];
+											$ligne = mysqli_fetch_array($result3);
+											echo $ligne["Prenom"];
+											echo $ligne["Nom"];
+											
+											if ($rows["Valide"] == 1){
+												echo "</br><a>" . "Validé". "</a>";
+											} else {
+												echo "</br><a>" . "En attente". "</a>";
+											}
 										?></p> <?php
 									} else { ?>
 										<p onMouseUp = "newConsultation('<?php echo $rows['ID_rendez_vous'];?>', '<?php echo $rows['ID_patient'];?>', event)">
@@ -166,15 +172,21 @@ $apres = $ts + 604800; //TimeStamp Lundi suivant
 											} else {
 												echo substr($rows['Heure'], 0, 5)."h".substr($rows['Minute'], 0, 5).'</br>';
 											}
+										
 											$result3 = $sql->query("SELECT Nom, Prenom FROM patient WHERE ID_patient = 
 												(SELECT ID_patient FROM rendez_vous WHERE ID_rendez_vous = '".$index."')");
-											$rows = mysqli_fetch_array($result3);
-											echo $rows["Prenom"];
-											echo $rows["Nom"]; 
+											$ligne = mysqli_fetch_array($result3);
+											echo $ligne["Prenom"];
+											echo $ligne["Nom"];
+											
+											if ($rows["Valide"] == 1){
+												echo "</br><a>" . "Validé". "</a>";
+											} else {
+												echo "</br><a>" . "En attente". "</a>";
+											}
 										?> </p> <?php
 									 }
 								}?>
-							<br>
 							<?php // requete pour récuperer le nom
 
 							?>
