@@ -42,7 +42,7 @@ if (!mysqli_query($conn, $sql1))
 }
 
 echo '<script>alert("1 consultation ajouté!");';
-echo "window.location.href='pageLogin.php';</script>";
+echo "window.location.href='calendrier.php';</script>";
 mysqli_close($conn);
 
 ?>
