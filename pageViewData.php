@@ -7,7 +7,7 @@ include "navbar.php";
 <html>
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="content-type">
-    <title>Read Data from Database</title>
+    <title>Toutes les données</title>
     <link rel="stylesheet" href="cssViewData.css">
 </head>
 
@@ -153,20 +153,35 @@ include "navbar.php";
         while($rows1 = mysqli_fetch_array($result1))
         {
             echo "<tr>";
-            echo "<td>".$rows1['Date']."</td>";
-            echo "<td>".$rows1['Nom']."</td>";
-            echo "<td>".$rows1['Prenom']."</td>";
-            echo "<td>".$rows1['Nature']."</td>";
-            echo "<td>".$rows1['Indicateur_anxiete']."</td>";
-            echo "<td>".$rows1['Prix']."</td>";
-            echo "<td>".$rows1['Methode_paiement']."</td>";
-            echo "<td>".$rows1['Commentaire']."</td>";
+                echo "<td>".$rows1['Date']."</td>";
+                echo "<td>".$rows1['Nom']."</td>";
+                echo "<td>".$rows1['Prenom']."</td>";
+                echo "<td>".$rows1['Nature']."</td>";
+                echo "<td>".$rows1['Indicateur_anxiete']."</td>";
+                echo "<td>".$rows1['Prix']."</td>";
+                echo "<td>".$rows1['Methode_paiement']."</td>";
+                echo "<td>".$rows1['Commentaire']."</td>";
 
-            $id = $rows1['ID_consultation'];
+                $id = $rows1['ID_consultation'];
 
-            echo "<td><a href='pageEditConsultation.php?id=".$id."'><button>Editer</button></a></td>";
-            echo "<td><a href='functionDeleteConsultation.php?id=".$id."'><button>Supprimer</button></a></td>";
+                echo "<td><a href='pageEditConsultation.php?id=".$id."'><button>Editer</button></a></td>";
+                echo "<td><a href='functionDeleteConsultation.php?id=".$id."'><button>Supprimer</button></a></td>";
             echo "</tr>";
+
+            if($rows1['ID_invite1'] != NULL || $rows1['ID_invite2'] != NULL)
+            {
+                $sql4= "SELECT * FROM patient WHERE ID_patient = '".$rows1['ID_invite1']."' OR ID_patient = '".$rows1['ID_invite2']."'";
+                $result4=mysqli_query($conn, $sql4);
+
+                while($rows4 = mysqli_fetch_array($result4))
+                {
+                    echo "<tr>";
+                        echo "<td>".$rows1['Date']."</td>";
+                        echo "<td>".$rows4['Nom']."</td>";
+                        echo "<td>".$rows4['Prenom']."</td>";
+                    echo "</tr>";
+                }
+            }
         }
         ?>
     </table>

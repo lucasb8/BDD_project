@@ -16,7 +16,7 @@ function navbar()
     }
     else
     {
-        echo "<li><a href='pageViewData.php'>View Data</a></li>";
+        echo "<li><a href='pageViewData.php'>Accès aux données</a></li>";
         echo "<li><a href='nouveauPatient.php'>Ajouter un nouveau client</a></li>";
         echo "<li><a href='pageValiderRDV.php'>Demandes de RDV clients</a></li>";
         echo "<li><a href='calendrier.php'>Planning</a></li>";
