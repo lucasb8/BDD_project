@@ -69,7 +69,14 @@ $apres = $ts + 604800; //TimeStamp Lundi suivant
 	
 	</br></br></br></br>
 	<h1 align="center"><?php echo $tabMois[date('m', $ts)].date('Y', $ts) ?> </h1>
-	</br>
+		<div align="center">
+		<a href='./calendrier.php?lundi=<?php echo $avant;?>' class="link"> << </a>
+		<a> <?php echo "Semaine ".$week; ?> </a>
+		<a href='./calendrier.php?lundi=<?php echo $apres;?>' class="link"> >> </a>
+		</br>
+		<a href='./calendrier.php' class="link" > Revenir à la semaine actuelle </a>
+		</br></br>
+	</div>
 	<table>
 		<tr>
 			<?php 
@@ -197,15 +204,5 @@ $apres = $ts + 604800; //TimeStamp Lundi suivant
 			?> </tr>
 		<?php }	?>
 	</table>
-	
-	</br>
-	<div class = "change" align="center">
-		<a href='./calendrier.php?lundi=<?php echo $avant;?>' class="link"> << </a>
-		<a> <?php echo "Semaine ".$week; ?> </a>
-		<a href='./calendrier.php?lundi=<?php echo $apres;?>' class="link"> >> </a>
-		
-		</br></br>
-		<a href='./calendrier.php' class="link" > Revenir à la semaine actuelle </a>
-	</div>
 </body>
 </html>
