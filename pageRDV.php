@@ -6,7 +6,7 @@ include "conn.php";
 if(! isset($_SESSION['nom']))
 {
     echo "<script>alert('Je ne sais pas qui vous êtes, il faut se login ! !');</script>";
-    echo "<script>window.location.href='pageLogin.php';</script>";
+    echo "<script>window.location.href='index.php';</script>";
 }
 else if($_SESSION['role'] === "1")
 {

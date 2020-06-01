@@ -27,7 +27,7 @@ if(isset($_SESSION['id']))          // Si quelqu'un est login (seule la psy pour
         if(mysqli_affected_rows($conn)<=0)
         {
             die("<script>alert('Cannot update data!');
-        window.location.href='pageLogin.php;</script>");
+        window.location.href='index.php;</script>");
         }
 
         echo "<script> alert('Le client a été ajouté !'); </script>";
@@ -51,7 +51,7 @@ else
     if($result->num_rows > 0)
     {
         echo '<script>alert("Cette adresse email est déjà utilisée !");';
-        echo "window.location.href='pageLogin.php';</script>";
+        echo "window.location.href='index.php';</script>";
         mysqli_close($conn);
     }
     else
@@ -98,7 +98,7 @@ else
         }
         else
         {
-            echo "window.location.href='pageLogin.php';</script>";
+            echo "window.location.href='index.php';</script>";
         }
 
         mysqli_close($conn);

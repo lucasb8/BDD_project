@@ -48,7 +48,7 @@ if($row=mysqli_fetch_array($result))
     else
     {
         echo "<script>alert('Pas accepté par la psy ');";
-        echo "window.location.href='pageLogin.php';</script>";
+        echo "window.location.href='index.php';</script>";
     }
 }
 

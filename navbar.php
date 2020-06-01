@@ -6,7 +6,7 @@ function navbar()
 
     if(! isset($_SESSION['id']))
     {
-        echo "<li><a href='pageLogin.php'>Se connecter</a></li>";
+        echo "<li><a href='index.php'>Se connecter</a></li>";
         echo "<li><a href='pageRegister.php'>S'enregistrer</a></li>";
     }
     else if($_SESSION['role'] === "0")

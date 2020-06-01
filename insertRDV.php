@@ -34,7 +34,7 @@ if($admin == true)          // La psy veut valider un rdv
 		if(mysqli_affected_rows($conn)<=0)
 		{
 			die("<script>alert('Cannot update data!');
-			window.location.href='pageLogin.php;</script>");
+			window.location.href='index.php;</script>");
 		}
 
 		echo "<script> alert('Le rendez a été confirmé !'); </script>";
@@ -47,7 +47,7 @@ if($admin == true)          // La psy veut valider un rdv
 		if(mysqli_affected_rows($conn)<=0)
 		{
 			die("<script>alert('Cannot update data!');
-			window.location.href='pageLogin.php;</script>");
+			window.location.href='index.php;</script>");
 		}
 
 		echo "<script> alert('Le rendez a été refusé !'); </script>";

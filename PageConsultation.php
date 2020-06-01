@@ -18,7 +18,7 @@ include "navbar.php";
 	// if don't have session user..then
 	if(! isset($_SESSION['nom']))
 	{
-		die("<script>alert('Je ne sais pas qui vous êtes, il faut se login !');window.location.href=pageLogin.php;</script>");
+		die("<script>alert('Je ne sais pas qui vous êtes, il faut se login !');window.location.href=index.php;</script>");
 	}
 
 	?>
