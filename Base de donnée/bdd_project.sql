@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 31 mai 2020 à 10:26
--- Version du serveur :  5.7.26
--- Version de PHP :  7.2.18
+-- Généré le :  lun. 01 juin 2020 à 16:05
+-- Version du serveur :  10.4.10-MariaDB
+-- Version de PHP :  7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -41,16 +41,15 @@ CREATE TABLE IF NOT EXISTS `consultation` (
   `ID_invite1` int(11) DEFAULT NULL,
   `ID_invite2` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID_consultation`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `consultation`
 --
 
 INSERT INTO `consultation` (`ID_consultation`, `Nature`, `Indicateur_anxiete`, `ID_patient`, `ID_rendez_vous`, `Prix`, `Methode_paiement`, `Commentaire`, `ID_invite1`, `ID_invite2`) VALUES
-(11, 'RÃ©union Projet', 8, 7, 11, 42, 'Carte bleue', 'Tentative 1', 0, 0),
-(10, 'Nouvelle Ã  rediger', 3, 1, 9, 2, 'EspÃ¨ce', 'Aucune idÃ©e de scenario', 0, 0),
-(12, 'Fin de Semestre', 10, 1, 15, 15, 'ChÃ¨que', 'On attend les notes', 8, 7);
+(17, 'Fin de semestre', 10, 7, 19, 50, 'Carte Bleue', 'On attend les notes', 1, 8),
+(16, 'Nouvelle Ã  rÃ©diger', 3, 1, 15, 39, 'EspÃ¨ce', 'Aucune idÃ©e pour le scÃ©nario', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -70,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `role` int(11) NOT NULL,
   `enregistre` int(11) NOT NULL,
   PRIMARY KEY (`ID_patient`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `patient`
@@ -79,11 +78,12 @@ CREATE TABLE IF NOT EXISTS `patient` (
 INSERT INTO `patient` (`ID_patient`, `Nom`, `Prenom`, `Categorie_sociale`, `Email`, `Mot_de_passe`, `Moyen_connaissance`, `role`, `enregistre`) VALUES
 (1, 'Cardoso', 'Nicolas ', 'Homme', 'nicolascardoso99@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'Magazine', 0, 1),
 (2, 'La Psy', 'Mme ', 'Femme', 'lapsy@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'JE SUIS LA PSY', 1, 1),
-(10, 'Valverde', 'Ernesto ', 'Homme', 'ernestovalverde@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'Staff Sportif', 0, 1),
+(10, 'AutreNom', 'Ernesto ', 'Homme', 'ernestovalverde@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'Staff Sportif', 0, 1),
 (11, 'Cardoso', 'Lucas ', 'Adolescent', 'lucascardoso@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'Mon grand frÃ¨re', 0, 1),
 (8, 'Merliot', 'Cedric ', 'Homme', 'cedricmerliot@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'Escalade', 0, 1),
 (7, 'Briere', 'Lucas ', 'Homme', 'lucasbriere@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'Projet', 0, 1),
-(12, 'Cardoso', 'Carlos ', 'Homme', 'carloscardoso@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'Mon fils', 0, 0);
+(12, 'Cardoso', 'Carlos ', 'Homme', 'carloscardoso@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'Mon fils', 0, 0),
+(18, 'Fekih', 'Mohamed ', 'Adolescent', 'mohafekih@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'SMS', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `profession` (
   `ID_patient` int(11) NOT NULL,
   `Date` date NOT NULL,
   PRIMARY KEY (`ID_profession`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `profession`
@@ -115,7 +115,8 @@ INSERT INTO `profession` (`ID_profession`, `Nom_profession`, `ID_patient`, `Date
 (14, 'Consultant', 12, '2020-05-30'),
 (15, 'Docteur', 2, '2020-05-30'),
 (16, 'Joueur ESport', 1, '2020-05-30'),
-(17, 'Coach Sportif', 10, '2020-05-30');
+(17, 'Coach Sportif', 10, '2020-05-30'),
+(19, 'Etudiant', 18, '2020-05-31');
 
 -- --------------------------------------------------------
 
@@ -132,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `rendez_vous` (
   `ID_patient` int(11) NOT NULL,
   `Valide` int(11) NOT NULL,
   PRIMARY KEY (`ID_rendez_vous`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `rendez_vous`
@@ -149,7 +150,10 @@ INSERT INTO `rendez_vous` (`ID_rendez_vous`, `Date`, `Heure`, `Minute`, `ID_pati
 (11, '2020-05-28', 16, 30, 7, 1),
 (14, '2020-06-10', 18, 0, 1, 1),
 (13, '2020-06-01', 15, 0, 7, 1),
-(15, '2020-06-03', 17, 30, 1, 1);
+(15, '2020-06-03', 17, 30, 1, 1),
+(16, '2020-06-03', 18, 30, 10, 1),
+(18, '2020-06-04', 14, 0, 8, 0),
+(19, '2020-06-03', 10, 0, 7, 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
